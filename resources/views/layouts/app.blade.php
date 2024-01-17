@@ -48,11 +48,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : '' }}"
-                                href="{{ route('admin.projects.index') }}">Projects</a>
+                                href="{{ route('admin.projects.index') }}">Progetti</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}"
-                                href="{{ route('admin.types.index') }}">Types</a>
+                                href="{{ route('admin.types.index') }}">Tipi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}"
+                                href="{{ route('admin.technologies.index') }}">Tecnologie</a>
                         </li>
                     </ul>
 
