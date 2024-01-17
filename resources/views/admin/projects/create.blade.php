@@ -16,12 +16,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="type_id">Tipo</label>
-                        <select class="form-control @error('type_id') is-invalid @enderror" name="type_id"
-                            id="type_id">
+                        <select class="form-control @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
                             <option value="">Seleziona il tipo di progetto</option>
                             @foreach ($types as $type)
-                                <option value="{{ $type->id }}"
-                                    {{ old('type_id') == $type->id ? 'selected' : '' }}>{{ $type->name }}
+                                <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }}>
+                                    {{ $type->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -48,24 +47,36 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="technologies">Tecnologie</label>
-                        <input type="" class="form-control @error('technologies') is-invalid @enderror"
-                            name="technologies" id="technologies">
-                        @error('technologies')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <div class="form-group">
+                            <h6>Seleziona la tecnologia</h6>
+                            @foreach ($technologies as $technology)
+                                <div class="form-check @error('technologies') is-invalid @enderror">
+                                    <input type="checkbox" class="form-check-input" name="technologies[]"
+                                        value="{{ $technology->id }}"
+                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                                    <label class="form-check-label">
+                                        {{ $technology->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                            @error('technologies')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <div class="mb-2">
-                            <img width="100" id="image-preview" src="https://via.placeholder.com/300"
+                    <div class="d-flex">
+                        <div class="me-3">
+                            <img width="100" id="image-preview" src="https://via.placeholder.com/300x200"
                                 alt="image-preview">
                         </div>
-                        <label for="image">Immagine</label>
-                        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                            id="image" value="{{ old('image') }}">
-                        @error('image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <div class="mb-3">
+                            <label for="image">Immagine</label>
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
+                                id="image" value="{{ old('image') }}">
+                            @error('image')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Crea</button>
                 </form>
