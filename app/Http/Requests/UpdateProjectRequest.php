@@ -27,7 +27,9 @@ class UpdateProjectRequest extends FormRequest
             'description' => ['required'],
             'url' => ['nullable'],
             'image'=> ['nullable','image'],
-            'technologies' => ['required']
+            'type_id' => ['nullable', 'exists:types,id'],
+            'technologies' => ['exists:technologies,id']
+
         ];
     }
 
@@ -39,7 +41,6 @@ class UpdateProjectRequest extends FormRequest
             'title.max' => 'Il titolo non deve superare i :max caratteri',
             'description.required' => 'La descrizione è obbligatoria',
             'image.image' => 'Il file deve essere un immagine',
-            'technologies.required' => 'Le tecnologie sono obbligatorie'
         ];
     }
 }
