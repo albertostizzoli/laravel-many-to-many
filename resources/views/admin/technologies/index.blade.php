@@ -3,11 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="text-center mt-2">I TIPI DI PROGETTO</h2>
-                @if (!empty(session('message')))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('message') }}
-                    </div>
+                <h2 class="text-center mt-2">LE TECNOLOGIE</h2>
+                @if(session()->has('message'))
+                <div class="alert alert-success mb-3 mt-3">
+                    {{ session()->get('message') }}
+                </div>
                 @endif
                 <table class="table  mt-5">
                     <thead>
@@ -18,18 +18,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($types as $type)
+                        @foreach ($technologies as $technology)
                             <tr class="table-light">
                                 <th scope="row">
                                     <button class="btn btn-primary">
                                         <a class=" text-white text-decoration-none"
-                                            href="{{ route('admin.types.show', $type->slug) }}">Mostra</a>
+                                            href="{{ route('admin.technologies.show', $technology->slug) }}">Mostra</a>
                                     </button>
                                 </th>
-                                <td><strong>{{ $type->name }}</strong></td>
-                                <td> <a href="{{ route('admin.types.edit', $type->slug) }}"
+                                <td><strong>{{ $technology->name }}</strong></td>
+                                <td> <a href="{{ route('admin.technologies.edit', $technology->slug) }}"
                                         class="btn btn-warning">Modifica</a>
-                                    <form action="{{ route('admin.types.destroy', $type->slug) }}" method="POST"
+                                    <form action="{{ route('admin.technologies.destroy', $technology->slug) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
@@ -41,8 +41,8 @@
                     </tbody>
                 </table>
                 <button class="btn btn-primary mt-3">
-                    <a class="text-white text-decoration-none" href="{{ route('admin.types.create') }}">Inserisci una
-                        nuova categoria</a>
+                    <a class="text-white text-decoration-none" href="{{ route('admin.technologies.create') }}">Inserisci una
+                        nuova tecnologia</a>
                 </button>
             </div>
         </div>

@@ -14,7 +14,7 @@
                         <tr class="table-danger">
                             <th scope="col">#</th>
                             <th scope="col">Titolo</th>
-                            <th scope="col">Azioni</th>
+                            <th scope="col">Modifica/Cancella</th>
                         </tr>
                     </thead>
                     <tbody>
