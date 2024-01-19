@@ -40,6 +40,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$projects->links('vendor.pagination.bootstrap-5')}}
                 <button class="btn btn-primary mt-3">
                     <a class="text-white text-decoration-none" href="{{ route('admin.projects.create') }}">Inserisci un
                         nuovo progetto</a>

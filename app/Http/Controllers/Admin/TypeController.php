@@ -7,6 +7,7 @@ use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class TypeController extends Controller
 {
@@ -24,6 +25,10 @@ class TypeController extends Controller
      */
     public function create()
     {
+        $currentUserId = Auth::id();
+        if ($currentUserId != 1) {
+            abort(403);
+        }
         return view('admin.types.create');
     }
 
@@ -52,6 +57,10 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
+        $currentUserId = Auth::id();
+        if ($currentUserId != 1) {
+            abort(403);
+        }
         return view('admin.types.edit', compact('type'));
     }
 
@@ -76,6 +85,11 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
+
+        $currentUserId = Auth::id();
+        if ($currentUserId != 1) {
+            abort(403);
+        }
         $type->delete();
         return to_route('admin.types.index')->with('message', "$type->name eliminato con successo");
     }

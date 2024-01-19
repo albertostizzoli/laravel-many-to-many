@@ -4,17 +4,19 @@
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center mt-2">LE TECNOLOGIE</h2>
-                @if(session()->has('message'))
-                <div class="alert alert-success mb-3 mt-3">
-                    {{ session()->get('message') }}
-                </div>
+                @if (session()->has('message'))
+                    <div class="alert alert-success mb-3 mt-3">
+                        {{ session()->get('message') }}
+                    </div>
                 @endif
                 <table class="table  mt-5">
                     <thead>
                         <tr class="table-danger">
                             <th scope="col">#</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Modifica/Cancella</th>
+                            @if (Auth::id() == 1)
+                                <th scope="col">Modifica/Cancella</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -27,15 +29,17 @@
                                     </button>
                                 </th>
                                 <td><strong>{{ $technology->name }}</strong></td>
-                                <td> <a href="{{ route('admin.technologies.edit', $technology->slug) }}"
-                                        class="btn btn-warning">Modifica</a>
-                                    <form action="{{ route('admin.technologies.destroy', $technology->slug) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger cancel-button">Cancella</button>
-                                    </form>
-                                </td>
+                                @if (Auth::id() == 1)
+                                    <td> <a href="{{ route('admin.technologies.edit', $technology->slug) }}"
+                                            class="btn btn-warning">Modifica</a>
+                                        <form action="{{ route('admin.technologies.destroy', $technology->slug) }}"
+                                            method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger cancel-button">Cancella</button>
+                                        </form>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
